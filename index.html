@@ -56,7 +56,7 @@
         var noteID = document.getElementById("noteid").value;
 
         document.getElementById("csrf-form").action =
-          "http://localhost:8080/note/delete/" + encodeURIComponent(noteID);
+          "http://localhost:8080/note/delete/" + noteID;
       }
     </script>
   </body>
