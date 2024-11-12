@@ -49,11 +49,14 @@
     </div>
 
     <script>
-      function setFormMethod() {
-        // Get the selected method from the dropdown
+      function setFormAction() {
         var selectedMethod = document.getElementById("method-select").value;
-        // Set the form's method attribute based on the dropdown selection
         document.getElementById("csrf-form").method = selectedMethod;
+
+        var noteID = document.getElementById("noteid").value;
+
+        document.getElementById("csrf-form").action =
+          "http://localhost:8080/note/delete/" + encodeURIComponent(noteID);
       }
     </script>
   </body>
