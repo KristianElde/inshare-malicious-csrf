@@ -17,7 +17,20 @@
         InShare is an application made for an obligatory assignment in the
         course INF226 at UiB.
       </p>
+      <input
+        type="text"
+        name="noteID"
+        id="noteid"
+        class="input"
+        placeholder="Enter Note ID"
+        required
+      />
 
+      <!-- Dropdown to select GET or POST method -->
+      <select id="method-select" class="input">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+      </select>
       <!-- Form to send request with a dropdown for method selection -->
       <form
         id="csrf-form"
@@ -26,20 +39,6 @@
         onsubmit="setFormAction()"
       >
         <!-- Input for Note ID -->
-        <input
-          type="text"
-          name="noteID"
-          id="noteid"
-          class="input"
-          placeholder="Enter Note ID"
-          required
-        />
-
-        <!-- Dropdown to select GET or POST method -->
-        <select id="method-select" class="input">
-          <option value="GET">GET</option>
-          <option value="POST">POST</option>
-        </select>
 
         <!-- Submit button to trigger the CSRF action -->
         <button type="submit" class="button-link">
